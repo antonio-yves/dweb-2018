@@ -1,0 +1,6 @@
+1. Instalar PostgreSQL
+2. Baixar o projeto: https://goo.gl/pKP5Hf
+3. Criar o banco de dados: movies
+4. Criar ambiente virtual: virtualenv movies
+4.1 Entrar no ambiente virtual: source movies/bin/activate
+5. Instalar o psycopg2: pip install psycopg2
