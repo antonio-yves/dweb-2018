@@ -4,5 +4,10 @@
     </head>
     <body>
         <h1>Olá filmes!</h1>
+        <ul>
+            {% for filme in filmes %}
+            <li>{{ filme }}</li>
+            {% endfor %}
+        </ul>
     </body>
 </html>

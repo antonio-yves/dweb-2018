@@ -10,4 +10,8 @@ def index():
 
 @app.route('/filmes')
 def filmes():
-    return render_template('filmes/index.html')
+    lista_filmes = ['Star Wars', 'Toy Story', 'Taxi Driver']
+    return render_template(
+        'filmes/index.html',
+        filmes=lista_filmes
+    )
