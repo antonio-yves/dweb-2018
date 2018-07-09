@@ -1,13 +1,15 @@
-<html>
-    <head>
-        <title>Filmes</title>
-    </head>
-    <body>
-        <h1>Olá filmes!</h1>
-        <ul>
-            {% for filme in filmes %}
-            <li>{{ filme }}</li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST">
+        <input name="filme" type="text">
+        <input value="ADD" type="submit">
+    </form>
+    <ul>
+        {% for filme in filmes %}
+        <li {% if loop.index0 % 2 == 0 %} style="background-color: #CCC" {% endif %} >
+            <a href="/filme/{{ loop.index0 }}">{{ filme }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
