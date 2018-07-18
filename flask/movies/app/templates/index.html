@@ -1,20 +1,17 @@
-<html>
-    <head>
-        <title>Página inicial</title>
-    </head>
-    <body>
-        <h1>Olá mundo</h1>
-        <ul>
-        {% for genero in generos %}
-            <li>{{ genero['nome'] }}</li>
-        {% endfor %}
-        </ul>
-        {% if username %}
-            {{ username }}
-        {% endif %}
-        <form action="" method="POST">
-            <input type="text" name="nome">
-            <input type="submit" value="Salvar">
-        </form>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Olá mundo</h1>
+    <ul>
+    {% for genero in generos %}
+        <li>{{ genero['nome'] }}</li>
+    {% endfor %}
+    </ul>
+    {% if username %}
+        {{ username }}
+    {% endif %}
+    <form action="" method="POST">
+        <input type="text" name="nome">
+        <input type="submit" value="Salvar" class="btn btn-primary">
+    </form>
+{% endblock %}
