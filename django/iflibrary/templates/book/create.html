@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Novo livro</title>
+  </head>
+  <body>
+    <a href='{% url "library:book-list" %}'>Voltar</a>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Salvar"/>
+    </form>
+  </body>
+</html>

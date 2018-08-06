@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Listagem dos livros</title>
+  </head>
+  <body>
+    <h2>Livros</h2> <a href="{% url 'library:book-create' %}">Novo livro</a>
+    <ul>
+      {% for object in object_list %}
+      <li><a href="{% url 'library:book-detail' object.pk %}">{{ object.name }}</a></li>
+      {% endfor %}
+    </ul>
+    <h2>Categorias</h2>
+    <ul>
+        {% for category in categories %}
+        <li><a href="{% url 'library:category-detail' category.pk %}">{{ category.name }}</a></li>
+        {% endfor %}
+      </ul>
+  </body>
+</html>

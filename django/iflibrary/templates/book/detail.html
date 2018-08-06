@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <title>Listagem dos livros</title>
+  </head>
+  <body>
+    <a href='{% url "library:book-list" %}'>Voltar</a>
+    <h2>{{ object.name }} (<a href="{% url 'library:category-detail' object.category.pk %}">{{ object.category.name }}</a>)</h2>
+    <p>{{ object.description }}</p>
+  </body>
+</html>

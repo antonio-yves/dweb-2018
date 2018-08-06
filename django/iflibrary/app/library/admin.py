@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Book, Author
+from .models import Category, Book, Author, Reservation
 
 class AuthorAdmin(admin.ModelAdmin):
 
@@ -9,4 +9,5 @@ class AuthorAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(Book)
+admin.site.register(Reservation)
 admin.site.register(Author, AuthorAdmin)

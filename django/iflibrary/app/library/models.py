@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Category(models.Model):
 
@@ -42,3 +43,18 @@ class Author(models.Model):
   class Meta:
     verbose_name = 'autor'
     verbose_name_plural = 'autores'
+
+
+class Reservation(models.Model):
+
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations', verbose_name='usuário')
+  book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reservations', verbose_name='livro')
+  created_date = models.DateTimeField(verbose_name='data empréstimo')
+  updated_date = models.DateTimeField(verbose_name='data devolução')
+
+  def __str__(self):
+    return "%s - %s" % (self.book.name, self.user.first_name)
+  
+  class Meta:
+    verbose_name = 'reserva'
+    verbose_name_plural = 'reservas'

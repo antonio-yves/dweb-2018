@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>Detalhes do livro</title>
+  </head>
+  <body>
+    <a href='{% url "library:book-list" %}'>Voltar</a>
+    <h2>{{ object.name }}</h2>
+    <p>{{ object.description }}</p>
+    <h3>Livros</h3>
+    <ul>
+      {% for book in object.books.all %}
+      <li><a href="{% url 'library:book-detail' book.pk %}">{{ book.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
