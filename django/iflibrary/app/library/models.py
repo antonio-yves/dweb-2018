@@ -28,3 +28,17 @@ class Book(models.Model):
   class Meta:
     verbose_name = 'livro'
     verbose_name_plural = 'livros'
+
+
+class Author(models.Model):
+
+  name = models.CharField(max_length=150, verbose_name='nome')
+  description = models.TextField(verbose_name='descrição')
+  books = models.ManyToManyField(Book, related_name='authors', verbose_name='livros')
+
+  def __str__(self):
+    return self.name
+  
+  class Meta:
+    verbose_name = 'autor'
+    verbose_name_plural = 'autores'
