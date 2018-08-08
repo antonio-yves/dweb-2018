@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render
 
 from django.views.generic.base import TemplateView
@@ -7,7 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView
 
 from django.urls import reverse_lazy
 
-from . import models
+from . import models, forms
 
 # Book list view
 # - - - - - - - - - - - - - - - - - - -
@@ -42,6 +44,15 @@ class BookCreateView(CreateView):
     success_url = reverse_lazy('library:book-list')
     fields = ['name', 'description', 'isbn', 'year', 'edition', 'category']
 
+# Book - update
+# - - - - - - - - - - - - - - - - - - -
+class BookUpdateView(UpdateView):
+
+    model = models.Book
+    template_name = 'book/create.html'
+    success_url = reverse_lazy('library:book-list')
+    fields = ['name', 'description', 'isbn', 'year', 'edition', 'category']
+
 # Category list view
 # - - - - - - - - - - - - - - - - - - -
 class CategoriesView(ListView):
@@ -55,3 +66,22 @@ class CategoryView(DetailView):
 
     model = models.Category
     template_name = 'category/detail.html'
+
+
+# Reservation - create
+# - - - - - - - - - - - - - - - - - - -
+class ReservationCreateView(CreateView):
+
+    model = models.Reservation
+    template_name = 'reservation/create.html'
+    success_url = reverse_lazy('library:book-list')
+    form_class = forms.ReservationForm
+    # fields = ['book', 'user']
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.created_date = datetime.now()
+        obj.updated_date = datetime.now()
+        obj.save()        
+        return super(ReservationCreateView, self).form_valid(form)

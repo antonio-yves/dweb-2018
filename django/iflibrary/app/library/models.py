@@ -47,8 +47,15 @@ class Author(models.Model):
 
 class Reservation(models.Model):
 
+  STATUS = (
+    (0, 'disponível'),
+    (1, 'reservado'),
+    (2, 'em falta')
+  )
+
   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations', verbose_name='usuário')
   book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reservations', verbose_name='livro')
+  status = models.IntegerField(choices=STATUS)
   created_date = models.DateTimeField(verbose_name='data empréstimo')
   updated_date = models.DateTimeField(verbose_name='data devolução')
 
