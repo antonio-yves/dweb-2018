@@ -2,4 +2,7 @@ from django.apps import AppConfig
 
 
 class LibraryConfig(AppConfig):
-    name = 'library'
+    name = 'app.library'
+
+    def ready(self):
+        from . import signals

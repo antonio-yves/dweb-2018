@@ -22,6 +22,8 @@ class Book(models.Model):
   year = models.IntegerField()
   edition = models.IntegerField()
   category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='books', verbose_name='categoria')
+  total = models.IntegerField(default=1)
+  available = models.IntegerField(default=1)
 
   def __str__(self):
     return self.name
@@ -60,7 +62,7 @@ class Reservation(models.Model):
   updated_date = models.DateTimeField(verbose_name='data devolução')
 
   def __str__(self):
-    return "%s - %s" % (self.book.name, self.user.first_name)
+    return "%s - %s" % (self.book.name, self.user.username)
   
   class Meta:
     verbose_name = 'reserva'

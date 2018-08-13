@@ -13,3 +13,16 @@ class ReservationForm(forms.ModelForm):
     widgets = {
       'status': forms.RadioSelect(choices=models.Reservation.STATUS)
     }
+
+# Reservation
+class BookReservationForm(forms.ModelForm):
+
+  book = forms.IntegerField(widget=forms.HiddenInput())
+  status = forms.IntegerField(widget=forms.HiddenInput(), initial=1)
+  
+  class Meta:
+    model = models.Reservation
+    fields = ('book', 'status')#('__all__')
+    # widgets = {
+    #   'status': forms.RadioSelect(choices=models.Reservation.STATUS)
+    # }

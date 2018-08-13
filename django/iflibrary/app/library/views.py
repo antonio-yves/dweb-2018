@@ -35,6 +35,12 @@ class BookView(DetailView):
     model = models.Book
     template_name = 'book/detail.html'
 
+    def get_context_data(self, **kwargs):
+        # kwargs['form'] = forms.BookReservationForm()
+        kwargs['form'] = forms.BookReservationForm(initial={'book': kwargs['object'].pk})
+
+        return super(BookView, self).get_context_data(**kwargs)
+
 # Book - create
 # - - - - - - - - - - - - - - - - - - -
 class BookCreateView(CreateView):
@@ -83,5 +89,5 @@ class ReservationCreateView(CreateView):
         obj.user = self.request.user
         obj.created_date = datetime.now()
         obj.updated_date = datetime.now()
-        obj.save()        
+        obj.save()
         return super(ReservationCreateView, self).form_valid(form)
