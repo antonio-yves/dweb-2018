@@ -6,5 +6,16 @@
     <a href='{% url "library:book-list" %}'>Voltar</a>
     <h2>{{ object.name }} (<a href="{% url 'library:category-detail' object.category.pk %}">{{ object.category.name }}</a>)</h2>
     <p>{{ object.description }}</p>
+
+    {% if request.user.is_authenticated %}
+      <form action="{% url 'library:reservation-create' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" id="id_book" name="book" value="{{ object.pk }}" />
+        <input type="hidden" id="status" name="status" value="1" />
+        <button type="submit">Reservar</button>
+      </form>
+    {% else %}
+      Usuário não autenticado
+    {% endif %}
   </body>
 </html>
