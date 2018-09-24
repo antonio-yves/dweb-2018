@@ -9,7 +9,7 @@ class ReservationForm(forms.ModelForm):
   
   class Meta:
     model = models.Reservation
-    fields = ('book', 'status')#('__all__')
+    fields = ('book', 'status', 'updated_date')#('__all__')
     widgets = {
       'status': forms.RadioSelect(choices=models.Reservation.STATUS)
     }
